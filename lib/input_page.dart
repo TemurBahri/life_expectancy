@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'genders.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -23,39 +26,37 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: MyContainer(
-                    color: Colors.black87,
-                  ),
+                  child: MyContainer(),
                 ),
                 Expanded(
-                  child: MyContainer(
-                    color: Colors.blueAccent,
-                  ),
+                  child: MyContainer(),
                 ),
               ],
             ),
           ),
           Expanded(
-            child: MyContainer(
-              color: Colors.pink,
-            ),
+            child: MyContainer(),
           ),
           Expanded(
-            child: MyContainer(
-              color: Colors.deepPurple,
-            ),
+            child: MyContainer(),
           ),
           Expanded(
             child: Row(
               children: [
                 Expanded(
                   child: MyContainer(
-                    color: Colors.yellow,
+                    child: GenderFunc(
+                      gender: 'WOMAN',
+                      icon: FontAwesomeIcons.venus,
+                    ),
                   ),
                 ),
                 Expanded(
                   child: MyContainer(
-                    color: Colors.red,
+                    child: GenderFunc(
+                      gender: 'MEN',
+                      icon: FontAwesomeIcons.mars,
+                    ),
                   ),
                 ),
               ],
@@ -63,21 +64,6 @@ class _InputPageState extends State<InputPage> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class MyContainer extends StatelessWidget {
-  final Color color;
-
-  MyContainer({@required this.color = Colors.white});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(13),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0), color: color),
     );
   }
 }
