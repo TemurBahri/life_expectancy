@@ -12,6 +12,8 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   String choose;
+  double smokingCigarette = 0.0;
+  double daySport = 3;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,7 @@ class _InputPageState extends State<InputPage> {
         centerTitle: true,
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             child: Row(
@@ -38,10 +41,71 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           Expanded(
-            child: MyContainer(),
+            child: MyContainer(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Haftada kaç gün spor yapıyorsunuz?',
+                    style: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    daySport.round().toString(),
+                    style: TextStyle(
+                        color: Colors.lightGreen,
+                        fontSize: 35,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Slider(
+                    min: 0,
+                    max: 7,
+                    value: daySport,
+                    divisions: 7,
+                    onChanged: (double newValue) {
+                      setState(() {
+                        daySport = newValue;
+                      });
+                    },
+                  )
+                ],
+              ),
+            ),
           ),
           Expanded(
-            child: MyContainer(),
+            child: MyContainer(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Günde kaç adet sigara içiyorsunuz?',
+                    style: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    smokingCigarette.round().toString(),
+                    style: TextStyle(
+                        color: Colors.lightGreen,
+                        fontSize: 35,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Slider(
+                    min: 0,
+                    max: 30,
+                    value: smokingCigarette,
+                    onChanged: (double newValue) {
+                      setState(() {
+                        smokingCigarette = newValue;
+                      });
+                    },
+                  )
+                ],
+              ),
+            ),
           ),
           Expanded(
             child: Row(
@@ -50,12 +114,12 @@ class _InputPageState extends State<InputPage> {
                   child: MyContainer(
                     onPress: () {
                       setState(() {
-                        choose = 'WOMAN';
+                        choose = 'WOMEN';
                       });
                     },
-                    color: choose == 'WOMAN' ? Colors.pink[300] : Colors.white,
+                    color: choose == 'WOMEN' ? Colors.pink[300] : Colors.white,
                     child: GenderFunc(
-                      gender: 'WOMAN',
+                      gender: 'WOMEN',
                       icon: FontAwesomeIcons.venus,
                     ),
                   ),
