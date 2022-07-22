@@ -11,6 +11,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  String choose;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +48,12 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: MyContainer(
+                    onPress: () {
+                      setState(() {
+                        choose = 'WOMAN';
+                      });
+                    },
+                    color: choose == 'WOMAN' ? Colors.pink[300] : Colors.white,
                     child: GenderFunc(
                       gender: 'WOMAN',
                       icon: FontAwesomeIcons.venus,
@@ -54,6 +62,12 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: MyContainer(
+                    onPress: () {
+                      setState(() {
+                        choose = 'MEN';
+                      });
+                    },
+                    color: choose == 'MEN' ? Colors.blue[300] : Colors.white,
                     child: GenderFunc(
                       gender: 'MEN',
                       icon: FontAwesomeIcons.mars,
