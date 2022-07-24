@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'constants.dart';
+
 class GenderFunc extends StatelessWidget {
   final String gender;
   final IconData icon;
@@ -18,13 +20,7 @@ class GenderFunc extends StatelessWidget {
           color: Colors.black54,
         ),
         SizedBox(height: 12),
-        Text(
-          gender,
-          style: TextStyle(
-              color: Colors.black54,
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold),
-        ),
+        Text(gender, style: kTextStyle),
       ],
     );
   }
