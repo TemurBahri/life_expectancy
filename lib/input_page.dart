@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:life_expectancy/constants.dart';
+import 'package:life_expectancy/result_page.dart';
+import 'package:life_expectancy/user_data.dart';
 
 import 'genders.dart';
 import 'my_container.dart';
@@ -12,11 +14,13 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  String choose;
+  String gender;
   double smokingCigarette = 0.0;
   double daySport = 0;
   int size = 0;
   int kilo = 0;
+  String boy = 'BOY';
+  String tkilo = 'KİLO';
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +40,12 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: MyContainer(
-                    child: buildRowOutlineButton('SIZE'),
+                    child: buildRowOutlineButton(boy),
                   ),
                 ),
                 Expanded(
                   child: MyContainer(
-                    child: buildRowOutlineButton('KG'),
+                    child: buildRowOutlineButton(tkilo),
                   ),
                 ),
               ],
@@ -92,7 +96,7 @@ class _InputPageState extends State<InputPage> {
                         smokingCigarette = newValue;
                       });
                     },
-                  )
+                  ),
                 ],
               ),
             ),
@@ -104,12 +108,12 @@ class _InputPageState extends State<InputPage> {
                   child: MyContainer(
                     onPress: () {
                       setState(() {
-                        choose = 'WOMEN';
+                        gender = 'KADIN';
                       });
                     },
-                    color: choose == 'WOMEN' ? Colors.pink[300] : Colors.white,
+                    color: gender == 'KADIN' ? Colors.pink[300] : Colors.white,
                     child: GenderFunc(
-                      gender: 'WOMEN',
+                      gender: 'KADIN',
                       icon: FontAwesomeIcons.venus,
                     ),
                   ),
@@ -118,17 +122,40 @@ class _InputPageState extends State<InputPage> {
                   child: MyContainer(
                     onPress: () {
                       setState(() {
-                        choose = 'MEN';
+                        gender = 'ERKEK';
                       });
                     },
-                    color: choose == 'MEN' ? Colors.blue[300] : Colors.white,
+                    color: gender == 'ERKEK' ? Colors.blue[300] : Colors.white,
                     child: GenderFunc(
-                      gender: 'MEN',
+                      gender: 'ERKEK',
                       icon: FontAwesomeIcons.mars,
                     ),
                   ),
                 ),
               ],
+            ),
+          ),
+          ButtonTheme(
+            height: 50,
+            child: FlatButton(
+              color: Colors.white,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ResultPage(UserData(
+                        gender: gender,
+                        size: size,
+                        daySport: daySport,
+                        kilo: kilo,
+                        smokingCigarette: smokingCigarette)),
+                  ),
+                );
+              },
+              child: Text(
+                'Hesapla',
+                style: kTextStyle,
+              ),
             ),
           ),
         ],
@@ -151,7 +178,7 @@ class _InputPageState extends State<InputPage> {
         RotatedBox(
           quarterTurns: -1,
           child: Text(
-            label == 'SIZE' ? size.toString() : kilo.toString(),
+            label == boy ? size.toString() : kilo.toString(),
             style: kNumberStyle,
           ),
         ),
@@ -169,7 +196,7 @@ class _InputPageState extends State<InputPage> {
                   ),
                   onPressed: () {
                     setState(() {
-                      label == 'SIZE' ? size++ : kilo++;
+                      label == boy ? size++ : kilo++;
                     });
                   }),
             ),
@@ -183,7 +210,7 @@ class _InputPageState extends State<InputPage> {
                   ),
                   onPressed: () {
                     setState(() {
-                      label == 'SIZE' ? size-- : kilo--;
+                      label == boy ? size-- : kilo--;
                     });
                   }),
             ),
