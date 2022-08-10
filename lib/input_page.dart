@@ -27,7 +27,7 @@ class _InputPageState extends State<InputPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Life Expectancy',
+          'Yaşam Süresini Hesapla',
           style: TextStyle(color: Colors.black54),
         ),
         centerTitle: true,
